@@ -23,7 +23,7 @@ class AddressManager(models.Manager):
         """获取用户的默认收货地址"""
         # self.model:获取self对象所在的模型类
         try:
-            address = self.model.objects.get(user=user, is_default=True)
+            address = self.get(user=user, is_default=True)
         except self.model.DoesNotExist:
             # 不存在默认收获地址
             address = None
