@@ -29,7 +29,7 @@ def send_register_active_email(to_email, username, token):
     time.sleep(5)
 
 
-@app.task
+# @app.task
 def generate_static_index_html():
     # 获取商品的种类信息
     types = GoodsType.objects.all()
