@@ -10,7 +10,8 @@ import os
 from goods.models import GoodsType, IndexGoodsBanner, IndexPromotionBanner, IndexTypeGoodsBanner
 from django_redis import get_redis_connection
 
-app = Celery('celery_task.task', broker='redis://192.168.119.128:6379/8')
+# app = Celery('celery_task.task', broker='redis://192.168.119.128:6379/8')
+app = Celery('celery_task.task', broker='redis://192.168.119.131:6379/8')
 
 
 # 定义任务函数
@@ -29,7 +30,7 @@ def send_register_active_email(to_email, username, token):
     time.sleep(5)
 
 
-# @app.task
+@app.task
 def generate_static_index_html():
     # 获取商品的种类信息
     types = GoodsType.objects.all()

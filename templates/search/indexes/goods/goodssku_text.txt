@@ -1,0 +1,4 @@
+# 指定根据表中的哪些字段建立索引
+{{ object.name }}  # 根据商品的名称建立索引
+{{ object.desc }}  #简介
+{{ object.goods.detail }} # 详情

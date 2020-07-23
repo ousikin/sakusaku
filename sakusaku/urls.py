@@ -20,6 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^search', include('haystack.urls')),
     url(r'^user/', include('user.urls', namespace='user')),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^order/', include('order.urls', namespace='order')),

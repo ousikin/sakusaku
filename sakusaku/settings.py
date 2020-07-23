@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tinymce',  # 富文本编辑器
+    'haystack',  # 全文检索框架
     'user',  # 用户模块
     'goods',  # 商品模块
     'cart',  # 购物车模块
@@ -155,7 +156,7 @@ EMAIL_FROM = '天天生鲜<wzx199502@gmail.com>'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.119.128:6379/9",
+        "LOCATION": "redis://192.168.119.131:6379/9",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -176,3 +177,16 @@ FDFS_CLIENT_CONF = './utils/fdfs/client.conf'
 
 # 设置fdfs存储服务器上nginx的ip和端口号
 FDFS_URL = 'http://192.168.119.130:8888/'
+
+# 全文检索框架的配置
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # 使用whoosh引擎
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # 索引文件路径
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+
+# 当添加，修改，删除数据时，自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
