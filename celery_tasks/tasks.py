@@ -5,7 +5,7 @@ from celery import Celery
 # 创建一个Celery的实例
 from django.conf import settings
 from django.core.mail import send_mail
-from django.template import loader, RequestContext
+from django.template import loader
 import os
 from goods.models import GoodsType, IndexGoodsBanner, IndexPromotionBanner, IndexTypeGoodsBanner
 from django_redis import get_redis_connection
@@ -55,7 +55,6 @@ def generate_static_index_html():
         'types': types,
         'goods_banners': goods_banners,
         'promotion_banners': promotion_banners,
-
     }
     # 使用模板
     # 1.加载模板文件,返回模板对象
